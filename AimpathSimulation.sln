@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AimpathSimulation", "AimpathSimulation\AimpathSimulation.csproj", "{73A6C340-61D7-4340-9B96-67492E14D882}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73A6C340-61D7-4340-9B96-67492E14D882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A6C340-61D7-4340-9B96-67492E14D882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A6C340-61D7-4340-9B96-67492E14D882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A6C340-61D7-4340-9B96-67492E14D882}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9C5724C-B25A-47E8-BD9D-D856B0BD362B}
+	EndGlobalSection
+EndGlobal
