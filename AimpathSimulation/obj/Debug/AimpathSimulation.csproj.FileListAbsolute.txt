@@ -1,7 +1,6 @@
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\bin\Debug\AimpathSimulation.exe.config
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\bin\Debug\AimpathSimulation.exe
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\bin\Debug\AimpathSimulation.pdb
-C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\obj\Debug\AimpathSimulation.csprojAssemblyReference.cache
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\obj\Debug\AimpathSimulation.MainForm.resources
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\obj\Debug\AimpathSimulation.Properties.Resources.resources
 C:\Users\Jannik\source\repos\AimpathSimulation\AimpathSimulation\obj\Debug\AimpathSimulation.csproj.GenerateResource.cache

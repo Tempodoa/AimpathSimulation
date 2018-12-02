@@ -37,10 +37,34 @@ namespace AimpathSimulation
             PointF[] points = PreparePanel(g);
             if (overaimbutton.Checked || overaimnoisebut.Checked)
                 runOveraimSim(g, points);
+            else if (curvebut.Checked)
+                runCurveSim(g, points);
             else
                 runLinearSim(g, points);
 
             button1.Enabled = true;
+        }
+
+        public void runCurveSim(Graphics g, PointF[] points)
+        {
+            PointF currDrawPoint = points[0];
+            PointF Destination = points[1];
+            Point controlPoint = new Point(rnd.Next(10, 550), rnd.Next(10, 550));
+            Brush lineBrush = new SolidBrush(Color.White);
+            Brush pointBrush = new SolidBrush(Color.Red);
+
+            for (double i = 0;i<=1;i+=1 / (double)smoothbar.Value)
+            {
+                Point drawLocation = BezierPoint( Point.Round(currDrawPoint), controlPoint, Point.Round(Destination),  i);
+                g.DrawLine(new Pen(lineBrush, 1), currDrawPoint, drawLocation);
+                currDrawPoint = drawLocation;
+                Thread.Sleep(25);
+            }
+            g.DrawLine(new Pen(lineBrush, 1), currDrawPoint, Destination);
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[0]), new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[1]), new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(controlPoint, new Size(2, 2)));
+
         }
 
         public void runOveraimSim(Graphics g, PointF[] points)
@@ -94,12 +118,17 @@ namespace AimpathSimulation
                 currDrawPoint = newDrawPoint;
                 Thread.Sleep(15);
             }
+
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[0]), new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[1]), new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(drawOveraim, new Size(2, 2)));
         }
 
         public void runLinearSim(Graphics g, PointF[] points)
         {
             PointF currDrawPoint = points[0];
             PointF destination = points[1];
+            Brush pointBrush = new SolidBrush(Color.Red);
             Brush brush = new SolidBrush(Color.White);
 
             while((int)Math.Round(currDrawPoint.X) != destination.X || (int)Math.Round(currDrawPoint.Y) != destination.Y)
@@ -128,6 +157,8 @@ namespace AimpathSimulation
                 currDrawPoint = newDrawPoint;
                 Thread.Sleep(15);
             }
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[0]), new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(Point.Round(points[1]), new Size(2, 2)));
         }
 
         public PointF[] PreparePanel(Graphics g)
@@ -152,10 +183,18 @@ namespace AimpathSimulation
             
             g.FillRectangle(new SolidBrush(Color.Black), drawPanel.DisplayRectangle);
             Brush pointBrush = new SolidBrush(Color.Red);
-            g.FillRectangle(pointBrush, new Rectangle(startPoint, new Size(1, 1)));
-            g.FillRectangle(pointBrush, new Rectangle(endPoint, new Size(1, 1)));
+            g.FillRectangle(pointBrush, new Rectangle(startPoint, new Size(2, 2)));
+            g.FillRectangle(pointBrush, new Rectangle(endPoint, new Size(2, 2)));
             Thread.Sleep(1000);
             return new PointF[] { startPoint, endPoint };
+        }
+
+        public Point BezierPoint(Point p0, Point p1, Point p2, double t)
+        {
+            Point finalPoint = new Point();
+            finalPoint.X = (int)(Math.Pow(1 - t, 2) * p0.X + (1 - t) * 2 * t * p1.X + t * t * p2.X);
+            finalPoint.Y = (int)(Math.Pow(1 - t, 2) * p0.Y + (1 - t) * 2 * t * p1.Y + t * t * p2.Y);
+            return finalPoint;
         }
 
         public double GetRandomNumber(double minimum, double maximum)
@@ -166,7 +205,6 @@ namespace AimpathSimulation
         public Vector3 Smooth(Vector3 currViewAngle, Vector3 CalculatedAngle, float smooth)
         {
             Vector3 smoothedVector = CalculatedAngle - currViewAngle;
-            //smoothedVector = currViewAngle + smoothedVector / 100f * smooth;
 
             if (linearnoisebut.Checked || overaimnoisebut.Checked)
             {
